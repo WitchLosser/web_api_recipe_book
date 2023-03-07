@@ -5,12 +5,12 @@ using Core.Entities;
 
 namespace Core.Services
 {
-    public class RecipesService : IRecipeService
+    public class RecipeService : IRecipeService
     {
         private readonly IRepository<Recipe> recipesRepo;
         private readonly IMapper mapper;
 
-        public RecipesService(IRepository<Recipe> recipesRepo, IMapper mapper)
+        public RecipeService(IRepository<Recipe> recipesRepo, IMapper mapper)
         {
             this.recipesRepo = recipesRepo;
             this.mapper = mapper;

@@ -8,7 +8,7 @@ namespace Core.Entities
 {
     public class RecipeIngredient
     {
-        // composite primary key: MovieId + GenreId
+        // composite primary key: RecipeId + IngredientId
         public int RecipeId { get; set; }
         public int IngredientId { get; set; }
 
