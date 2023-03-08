@@ -33,7 +33,8 @@ namespace web_api_recipe_book.Controllers
             [HttpPost]
             public async Task<IActionResult> Create([FromBody] RecipeDto recipe)
             {
-                await recipeService.Create(recipe);
+                 if (!ModelState.IsValid) return BadRequest();
+                 await recipeService.Create(recipe);
 
                 return Ok();
             }
@@ -41,6 +42,8 @@ namespace web_api_recipe_book.Controllers
             [HttpPut]
             public async Task<IActionResult> Edit([FromBody] RecipeDto recipe)
             {
+                if (!ModelState.IsValid) return BadRequest();
+
                 await recipeService.Edit(recipe);
 
                 return Ok();
