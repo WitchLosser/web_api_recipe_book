@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    internal class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal RecipeDbContext context;
         internal DbSet<TEntity> dbSet;

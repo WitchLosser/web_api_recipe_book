@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 
 namespace Core
 {
-    public class RecipeDbContext : DbContext
+    internal class RecipeDbContext : DbContext
     {
         public RecipeDbContext() : base() { }
         public RecipeDbContext(DbContextOptions options) : base(options) { }
