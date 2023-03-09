@@ -2,6 +2,7 @@
 using Core.Dtos;
 using Core.Interfaces;
 using Core.Entities;
+using Core.Specifications;
 
 namespace Core.Services
 {
@@ -17,14 +18,14 @@ namespace Core.Services
         }
         public async Task<IEnumerable<RecipeDto>> GetAll()
         {
-            var result = await recipesRepo.Get();
+            var result = await recipesRepo.GetListBySpec(new Recipes.OrderedAll());
 
             return mapper.Map<IEnumerable<RecipeDto>>(result);
         }
 
         public async Task<RecipeDto?> GetById(int id)
         {
-            Recipe? item = await recipesRepo.GetByID(id);
+            Recipe? item = await recipesRepo.GetItemBySpec(new Recipes.ById(id));
 
             if (item == null) return null; // throw exception
             
@@ -45,7 +46,7 @@ namespace Core.Services
 
         public async Task Delete(int id)
         {
-            if (await recipesRepo.GetByID(id) == null) return; // throw exception
+            if (await recipesRepo.GetById(id) == null) return; // throw exception
 
             await recipesRepo.Delete(id);
             await recipesRepo.Save();
