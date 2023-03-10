@@ -1,7 +1,7 @@
 ﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core
+namespace Infrustructure
 {
     public static class DbContextExtensions
     {

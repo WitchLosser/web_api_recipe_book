@@ -6,56 +6,55 @@ namespace web_api_recipe_book.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RecipeController : Controller
+    public class RecipeController : ControllerBase
     {
         private readonly IRecipeService recipeService;
 
-        public RecipeController(IRecipeService recipeService )
-            {
+        public RecipeController(IRecipeService recipeService)
+        {
             this.recipeService = recipeService;
         }
 
-            [HttpGet]
-            public async Task<IActionResult> Get()
-            {
-                return Ok(await recipeService.GetAll());
-            }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await recipeService.GetAll());
+        }
 
-            [HttpGet("{id}")]
-            public async Task<IActionResult> Get([FromRoute] int id) // FromQuery, FromRoute
-            {
-                var item = await recipeService.GetById(id);
-                if (item == null) return NotFound();
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromRoute] int id) // FromQuery, FromRoute
+        {
+            var item = await recipeService.GetById(id);
 
-                return Ok(item); // JSON
-            }
+            return Ok(item); // JSON
+        }
 
-            [HttpPost]
-            public async Task<IActionResult> Create([FromBody] RecipeDto recipe)
-            {
-                 if (!ModelState.IsValid) return BadRequest();
-                 await recipeService.Create(recipe);
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] RecipeDto recipe)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            await recipeService.Create(recipe);
 
-                return Ok();
-            }
+            return Ok();
+        }
 
-            [HttpPut]
-            public async Task<IActionResult> Edit([FromBody] RecipeDto recipe)
-            {
-                if (!ModelState.IsValid) return BadRequest();
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromBody] RecipeDto recipe)
+        {
+            if (!ModelState.IsValid) return BadRequest();
 
-                await recipeService.Edit(recipe);
+            await recipeService.Edit(recipe);
 
-                return Ok();
-            }
+            return Ok();
+        }
 
-            [HttpDelete("{id}")]
-            public async Task<IActionResult> Delete([FromRoute] int id)
-            {
-                await recipeService.Delete(id);
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            await recipeService.Delete(id);
 
-                return Ok();
-            }
-        
+            return Ok();
+        }
+
     }
 }

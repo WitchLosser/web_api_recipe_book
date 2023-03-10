@@ -2,6 +2,10 @@
 using Core.Dtos;
 using Core.Interfaces;
 using Core.Entities;
+using Core.Specifications;
+using Core.Helpers;
+using System.Net;
+using Core.Resources;
 
 namespace Core.Services
 {
@@ -17,17 +21,18 @@ namespace Core.Services
         }
         public async Task<IEnumerable<RecipeDto>> GetAll()
         {
-            var result = await recipesRepo.Get();
+            var result = await recipesRepo.GetListBySpec(new Recipes.OrderedAll());
 
             return mapper.Map<IEnumerable<RecipeDto>>(result);
         }
 
         public async Task<RecipeDto?> GetById(int id)
         {
-            Recipe? item = await recipesRepo.GetByID(id);
+            Recipe? item = await recipesRepo.GetItemBySpec(new Recipes.ById(id));
 
-            if (item == null) return null; // throw exception
-            
+            if (item == null)
+                throw new HttpException(ErrorMessages.RecipeNotFound, HttpStatusCode.NotFound);
+
             return mapper.Map<RecipeDto>(item);
         }
 
@@ -45,7 +50,8 @@ namespace Core.Services
 
         public async Task Delete(int id)
         {
-            if (await recipesRepo.GetByID(id) == null) return; // throw exception
+            if (await recipesRepo.GetById(id) == null)
+                throw new HttpException(ErrorMessages.RecipeNotFound, HttpStatusCode.NotFound);
 
             await recipesRepo.Delete(id);
             await recipesRepo.Save();

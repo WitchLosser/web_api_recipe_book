@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Configurations
+namespace Infrustructure.Configurations
 {
     internal class RecipeConfigurations : IEntityTypeConfiguration<Recipe>
     {
@@ -21,6 +21,9 @@ namespace Core.Configurations
             builder.Property(x => x.Name)
                    .HasMaxLength(200)
                    .IsRequired();
+
+            builder.Property(x => x.MinToCook)
+                .IsRequired();
 
             // set many to many relation
             builder.HasMany(x => x.Ingredients).WithOne(x => x.Recipe).HasForeignKey(x => x.RecipeId);

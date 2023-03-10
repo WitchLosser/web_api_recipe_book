@@ -1,4 +1,6 @@
-﻿using Core.Interfaces;
+﻿using Ardalis.Specification.EntityFrameworkCore;
+using Ardalis.Specification;
+using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,10 +8,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Infrustructure.Data;
 
-namespace Core
+namespace Infrustructure
 {
-    internal class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal RecipeDbContext context;
         internal DbSet<TEntity> dbSet;
@@ -25,34 +28,12 @@ namespace Core
             await context.SaveChangesAsync();
         }
 
-        public async virtual Task<IEnumerable<TEntity>> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            params string[] includeProperties)
+        public async virtual Task<IEnumerable<TEntity>> GetAll()
         {
-            IQueryable<TEntity> query = dbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties)
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return await orderBy(query).ToListAsync();
-            }
-            else
-            {
-                return await query.ToListAsync();
-            }
+            return await dbSet.ToListAsync();
         }
 
-        public async virtual Task<TEntity?> GetByID(object id)
+        public async virtual Task<TEntity?> GetById(object id)
         {
             return await dbSet.FindAsync(id);
         }
@@ -88,6 +69,23 @@ namespace Core
                 dbSet.Attach(entityToUpdate);
                 context.Entry(entityToUpdate).State = EntityState.Modified;
             });
+        }
+
+        // working with specifications
+        public async Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).ToListAsync();
+        }
+
+        public async Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).FirstOrDefaultAsync();
+        }
+
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> specification)
+        {
+            var evaluator = new SpecificationEvaluator();
+            return evaluator.GetQuery(dbSet, specification);
         }
     }
 }
