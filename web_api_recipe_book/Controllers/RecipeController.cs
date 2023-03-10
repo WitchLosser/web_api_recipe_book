@@ -25,7 +25,6 @@ namespace web_api_recipe_book.Controllers
         public async Task<IActionResult> Get([FromRoute] int id) // FromQuery, FromRoute
         {
             var item = await recipeService.GetById(id);
-            if (item == null) return NotFound();
 
             return Ok(item); // JSON
         }

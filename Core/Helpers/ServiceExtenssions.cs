@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using Core.Helpers;
+using Core.Interfaces;
 using Core.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace Core
+namespace Core.Helpers
 {
     public static class ServiceExtenssions
     {
