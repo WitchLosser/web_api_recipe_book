@@ -8,15 +8,16 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Infrustructure.Data;
 
-namespace Core
+namespace Infrustructure
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal RecipeDbContext context;
         internal DbSet<TEntity> dbSet;
 
-        internal Repository(RecipeDbContext context)
+        public Repository(RecipeDbContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

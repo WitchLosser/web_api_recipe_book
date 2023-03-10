@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Configurations
+namespace Infrustructure.Configurations
 {
     internal class IngredientConfigurations : IEntityTypeConfiguration<Ingredient>
     {

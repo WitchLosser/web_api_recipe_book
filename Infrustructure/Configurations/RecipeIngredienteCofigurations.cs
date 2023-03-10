@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Emit;
 
-namespace Core.Configurations
+namespace Infrustructure.Configurations
 {
     internal class RecipeIngredienteCofigurations : IEntityTypeConfiguration<RecipeIngredient>
     {
         public void Configure(EntityTypeBuilder<RecipeIngredient> builder)
         {
             builder
-            .HasKey(mg => new {mg.IngredientId, mg.RecipeId});
+            .HasKey(mg => new { mg.IngredientId, mg.RecipeId });
             builder
                 .HasOne(ri => ri.Recipe)
                 .WithMany(r => r.Ingredients)
@@ -25,6 +25,6 @@ namespace Core.Configurations
                 .WithMany(g => g.Recipes)
                 .HasForeignKey(bc => bc.IngredientId);
         }
-      
+
     }
 }

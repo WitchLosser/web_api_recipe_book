@@ -1,13 +1,13 @@
-﻿using Core.Configurations;
+﻿using Infrustructure.Configurations;
 using Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Core
+namespace Infrustructure.Data
 {
-    internal class RecipeDbContext : DbContext
+    public class RecipeDbContext : DbContext
     {
         public RecipeDbContext() : base() { }
         public RecipeDbContext(DbContextOptions options) : base(options) { }

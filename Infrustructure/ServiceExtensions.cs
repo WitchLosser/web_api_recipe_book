@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Interfaces;
+using Infrustructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

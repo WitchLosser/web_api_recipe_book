@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Core
 {
     public static class ServiceExtenssions
@@ -21,7 +20,7 @@ namespace Core
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddScoped<IRecipeService, RecipeService>();
-            // other services...
+            //add other services if needed;
         }
 
         public static void AddValidators(this IServiceCollection services)
