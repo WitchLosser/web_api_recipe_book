@@ -16,7 +16,9 @@ namespace Core.Specifications
             public OrderedAll()
             {
                 Query
-                    .OrderByDescending(x => x.Name);
+                    .OrderByDescending(x => x.Name)
+                    .Include(x => x.Ingredients)
+                    .ThenInclude(x => x.Ingredient);
             }
         }
         public class ByIds : Specification<Recipe>
@@ -24,7 +26,9 @@ namespace Core.Specifications
             public ByIds(int[] ids)
             {
                 Query
-                    .Where(x => ids.Contains(x.Id));
+                    .Where(x => ids.Contains(x.Id))
+                    .Include(x => x.Ingredients)
+                    .ThenInclude(x => x.Ingredient); ;
             }
         }
         public class ById : Specification<Recipe>
@@ -32,7 +36,9 @@ namespace Core.Specifications
             public ById(int id)
             {
                 Query
-                    .Where(x => x.Id == id);
+                    .Where(x => x.Id == id)
+                    .Include(x => x.Ingredients)
+                    .ThenInclude(x => x.Ingredient); ;
             }
         }
     }
