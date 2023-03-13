@@ -81,9 +81,9 @@ namespace Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User with requested id not found!.
         /// </summary>
-        internal static string UserByIdNotFound {
+        internal static string UserByIDNotFound {
             get {
-                return ResourceManager.GetString("UserByIdNotFound", resourceCulture);
+                return ResourceManager.GetString("UserByIDNotFound", resourceCulture);
             }
         }
     }

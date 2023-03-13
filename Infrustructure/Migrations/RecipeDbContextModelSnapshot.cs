@@ -651,7 +651,7 @@ namespace Core.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-
+                });
             modelBuilder.Entity("Core.Entities.DescriptionStep", b =>
                 {
                     b.HasOne("Core.Entities.Recipe", "Recipe")
@@ -748,7 +748,7 @@ namespace Core.Migrations
 
                     b.Navigation("Ingredients");
                 });
-#pragma warning restore 612, 618
+
         }
     }
 }
