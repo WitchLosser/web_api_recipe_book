@@ -32,7 +32,10 @@ namespace Core.Specifications
             public ById(int id)
             {
                 Query
-                    .Where(x => x.Id == id);
+                    .Where(x => x.Id == id)
+                    .Include(x => x.DescriptionSteps)
+                    .Include(x => x.Ingredients)
+                    .ThenInclude(x => x.Ingredient);
             }
         }
     }
