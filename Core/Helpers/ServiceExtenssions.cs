@@ -21,7 +21,8 @@ namespace Core.Helpers
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddScoped<IRecipeService, RecipeService>();
-            //add other services if needed;
+            services.AddScoped<IAccountsService, AccountsService>();
+           
         }
 
         public static void AddValidators(this IServiceCollection services)
