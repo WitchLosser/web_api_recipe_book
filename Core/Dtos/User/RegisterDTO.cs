@@ -16,6 +16,8 @@ namespace Core.Dtos.User
 
         [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
+
+        public string Location { get; set; }
     }
     public enum Gender
     {
