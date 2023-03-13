@@ -28,7 +28,7 @@ namespace Core.Services
             var user = await userManager.FindByIdAsync(id);
 
             if (user == null)
-                throw new HttpException(ErrorMessages.UserByIdNotFound, HttpStatusCode.NotFound);
+                throw new HttpException(ErrorMessages.UserByIDNotFound, HttpStatusCode.NotFound);
 
             return user;
         }
@@ -38,7 +38,7 @@ namespace Core.Services
             var user = await userManager.FindByNameAsync(dto.Username);
 
             if (user == null || !await userManager.CheckPasswordAsync(user, dto.Password))
-                throw new HttpException(ErrorMessages.InvalidCreds, HttpStatusCode.BadRequest);
+                throw new HttpException(ErrorMessages.RecipeNotFound, HttpStatusCode.BadRequest);
 
             await signInManager.SignInAsync(user, true);
         }
