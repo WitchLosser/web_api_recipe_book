@@ -10,7 +10,7 @@ using System.Reflection.Emit;
 
 namespace Infrustructure.Configurations
 {
-    internal class RecipeIngredienteCofigurations : IEntityTypeConfiguration<RecipeIngredient>
+    internal class RecipeIngredientCofigurations : IEntityTypeConfiguration<RecipeIngredient>
     {
         public void Configure(EntityTypeBuilder<RecipeIngredient> builder)
         {
