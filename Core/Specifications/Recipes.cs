@@ -37,8 +37,10 @@ namespace Core.Specifications
             {
                 Query
                     .Where(x => x.Id == id)
+                    .Include(x => x.DescriptionSteps)
                     .Include(x => x.Ingredients)
-                    .ThenInclude(x => x.Ingredient); ;
+                    .ThenInclude(x => x.Ingredient);
+
             }
         }
     }

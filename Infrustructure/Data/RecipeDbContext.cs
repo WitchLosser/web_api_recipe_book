@@ -21,6 +21,7 @@ namespace Infrustructure.Data
 
             // ----------- Data Initialisation -----------
             modelBuilder.SeedIngredients();
+            modelBuilder.SeedDescriptionSteps();
             modelBuilder.SeedRecipes();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,5 +33,6 @@ namespace Infrustructure.Data
 
         // ---------------- Data Collections ----------------
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<DescriptionStep> DescriptionSteps { get; set; }
     }
 }
