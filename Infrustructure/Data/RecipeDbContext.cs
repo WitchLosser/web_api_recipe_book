@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 
 namespace Infrustructure.Data
 {
-    public class RecipeDbContext : DbContext
+    public class RecipeDbContext : IdentityDbContext
     {
         public RecipeDbContext() : base() { }
         public RecipeDbContext(DbContextOptions options) : base(options) { }
