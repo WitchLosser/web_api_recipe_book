@@ -32,8 +32,8 @@ namespace web_api_recipe_book.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            await accountsService.Login(dto);
-            return Ok();
+            var response = await accountsService.Login(dto);
+            return Ok(response);
         }
 
         [HttpPost("logout")]

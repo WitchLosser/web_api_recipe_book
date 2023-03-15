@@ -1,5 +1,7 @@
 ﻿using Core.Dtos;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace web_api_recipe_book.Controllers
@@ -15,6 +17,7 @@ namespace web_api_recipe_book.Controllers
             this.recipeService = recipeService;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
