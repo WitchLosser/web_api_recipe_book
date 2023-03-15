@@ -4,11 +4,6 @@ using Core.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace Core.Helpers
 {
     public static class ServiceExtenssions
@@ -22,7 +17,8 @@ namespace Core.Helpers
         {
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IAccountsService, AccountsService>();
-           
+            services.AddScoped<IJwtService, JwtService>();
+
         }
 
         public static void AddValidators(this IServiceCollection services)

@@ -2,6 +2,9 @@ using Core.Helpers;
 using Core.Interfaces;
 using Core.Services;
 using Infrustructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using web_api_recipe_book;
@@ -13,6 +16,8 @@ string connStr = builder.Configuration.GetConnectionString("LocalDb");
 // Add services to the container.
 builder.Services.AddControllers()
     .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddJWT(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
