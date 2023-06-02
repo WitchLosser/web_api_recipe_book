@@ -27,7 +27,7 @@ namespace Infrustructure.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string connStr = @"Server=tcp:reacts.database.windows.net,1433;Initial Catalog=recipe;Persist Security Info=False;User ID=addmin;Password={Query-13456};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RECIPE_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
             optionsBuilder.UseSqlServer(connStr);
         }
 
